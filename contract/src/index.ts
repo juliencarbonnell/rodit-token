@@ -80,16 +80,10 @@ export class Contract extends NearContract {
   @call
   nft_mint({
     token_id, // (Serial Number X.509): Random ULID
-    issuer_name, // (Issuer Name X.509): Common issuer_name chosen in the GUI
-    description_rodt, // Common description chosen in the GUI
+    customer_name, // (Issuer Name X.509): Common customer_name chosen in the GUI
+    resource_location, // Common description chosen in the GUI
     not_after, // (Not After X.509): Date greater than starts_at. Value 0 for “any” as per X.509
     not_before, // (Not Before X.509): Date, with Value 0 for “any” as per X.509
-    cidr_block, // The first IPv4 address in the ipaddressrange
-    listen_port,
-    dns_server, // does the server need this? A single IPv4 address chosen in the GUI
-    post_up, // Server only, a common command chosen in in the GUI
-    post_down, // Server only, a common command chosen in in the GUI
-    allowed_ips, // A common IPv4 range chosen in the GUI
     subjectuniqueidentifier_url, // (Subject Unique Identifier X.509): A single IPv4 address for the server chosen in the GUI
     serviceprovider_id, // serverserialnumber for the Server, the token_id value of the server for the Clients
     serviceprovider_signature,
@@ -99,16 +93,10 @@ export class Contract extends NearContract {
     owneraccount_id, // This is the owner of the rodtparently, but I assumed it would be the wallet logged in
   }) {
     const metadata = new TokenMetadata(
-      issuer_name, // (Issuer Name X.509): Common issuer_name chosen in the GUI
-      description_rodt, // Common description chosen in the GUI
+      customer_name, // (Issuer Name X.509): Common customer_name chosen in the GUI
+      resource_location, // Common description chosen in the GUI
       not_after, // (Not After X.509): Date greater than starts_at. Value 0 for “any” as per X.509
       not_before, // (Not Before X.509): Date, with Value 0 for “any” as per X.509
-      cidr_block, // The first IPv4 address in the ipaddressrange
-      listen_port,
-      dns_server, // does the server need this? A single IPv4 address chosen in the GUI
-      post_up, // Server only, a common command chosen in in the GUI
-      post_down, // Server only, a common command chosen in in the GUI
-      allowed_ips, // A common IPv4 range chosen in the GUI
       subjectuniqueidentifier_url, // (Subject Unique Identifier X.509): A single IPv4 address for the server chosen in the GUI
       serviceprovider_id, // serverserialnumber for the Server, the token_id value of the server for the Clients
       serviceprovider_signature,

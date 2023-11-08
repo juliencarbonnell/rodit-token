@@ -37,19 +37,11 @@ export class RodtContractMetadata {
 }
 
 export class TokenMetadata {
-  issuername?: string; // Provider of the VPN Service
+  customername?: string; // Provider of the VPN Service
   description?: string; // Description of the VPN Service
   notafter?: string; // When the VPN Service expires, Unix epoch in milliseconds, 1 year by default in the user interface
   notbefore?: string; // When the VPN Service starts, Unix epoch in milliseconds
   //    vpnaccelerator: Option<Bool>, // VPN Accelerator is on if true, off if false, future feature not for the POC
-  cidrblock?: string; // (Addr not Net because Borsh does not have a matching trait) IP Adress range, suggested random in the user interface
-  listenport?: string; // Port number, suggested random in the user interface
-  dns?: string; // DNS IP Adress, empty by default in the user interface
-  //    saveconfig: Option<Bool>, // This is not an applicable feature for Non fungible token based VPN Services
-  postup?: string; // Post Up command for the server, with a default in the user interface
-  //    predown:  string; // Pre Down ip command, future feature not for the POC
-  postdown?: string; // Post Down command for the server, with a default in the user interface
-  allowedips?: string; // (Addr not Net because Borsh does not have a matching trait) Range of IP Addresses that clients can connect to, default "everywhere"
   subjectuniqueidentifierurl?: string; // Intial URL where the clients connect
   serviceproviderid?: string; // Non fungible token ID of the "author" of the set of Non fungible tokens created
   serviceprovidersignature?: string; //  Hash of the Non fungible token signed with serviceproviderid's publickey sourced from the blockchain
@@ -59,31 +51,19 @@ export class TokenMetadata {
   //    authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
 
   constructor(
-    issuer_name?: string,
-    description_rodt?: string,
+    customer_name?: string,
+    resource_location?: string,
     not_after?: string,
     not_before?: string,
-    cidr_block?: string,
-    listen_port?: string,
-    dns_server?: string,
-    post_up?: string,
-    post_down?: string,
-    allowed_ips?: string,
     subjectuniqueidentifier_url?: string,
     serviceprovider_id?: string,
     serviceprovider_signature?: string,
     kb_persecond?: string
   ) {
-      (this.issuername = issuer_name),
-      (this.description = description_rodt),
+      (this.customername = customer_name),
+      (this.description = resource_location),
       (this.notafter = not_after),
       (this.notbefore = not_before),
-      (this.cidrblock = cidr_block),
-      (this.listenport = listen_port),
-      (this.dns = dns_server),
-      (this.postup = post_up),
-      (this.postdown = post_down),
-      (this.allowedips = allowed_ips),
       (this.subjectuniqueidentifierurl = subjectuniqueidentifier_url),
       (this.serviceproviderid = serviceprovider_id),
       (this.serviceprovidersignature = serviceprovider_signature),
