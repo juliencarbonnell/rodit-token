@@ -36,8 +36,8 @@ export const StepOne = (props) => {
 
   const initialValues = {
     clientNumber: "",
-    vpnProvider: "",
-    vpnDescription: "",
+    nameofCustomer: "",
+    locationofResource: "",
     expirationDate: nextYearDate(),
     startingDate: todayDate(),
   }
@@ -59,7 +59,7 @@ export const StepOne = (props) => {
             />
             <Input
               label="Your VPN Provider Name"
-              name="vpnProvider"
+              name="nameofCustomer"
               type="text"
               placeholder=""
             />
@@ -67,7 +67,7 @@ export const StepOne = (props) => {
           <div className="my-2">
             <Input
               label="Description of your VPN Service"
-              name="vpnDescription"
+              name="locationofResource"
               type="text"
               placeholder=""
             />

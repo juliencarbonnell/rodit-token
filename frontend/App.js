@@ -12,8 +12,8 @@ const App = ({ isSignedIn, cableguardForge, wallet }) => {
 
   const [data, setData] = useState({
     clientNumber: "",
-    vpnProvider: "",
-    vpnDescription: "",
+    nameofCustomer: "",
+    locationofResource: "",
     expirationDate: "",
     startingDate: "",
     cidrAddresses: "",
@@ -69,16 +69,10 @@ const App = ({ isSignedIn, cableguardForge, wallet }) => {
   const handleMint = async (formData) => {
     const mint = await cableguardForge.addRODTset(
       data.clientNumber,
-      data.vpnProvider,
-      data.vpnDescription,
+      data.nameofCustomer,
+      data.locationofResource,
       data.expirationDate,
       data.startingDate,
-      data.cidrAddresses,
-      data.vpnPorts,
-      data.dnsServerIp,
-      data.postUpVpn,
-      data.postDownVpn,
-      formData.allowedIPv4,
       formData.initialendpoint_url,
       formData.maximumKb,
       formData.privateKey,

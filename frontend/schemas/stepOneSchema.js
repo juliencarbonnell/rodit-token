@@ -9,10 +9,10 @@ export const formSchema = yup.object().shape({
     .max(16, "Maximum of minted RODiT is 16")
     .integer()
     .required("Required"),
-  vpnProvider: yup
+  nameofCustomer: yup
     .string("Please enter a VPN provider name")
     .required("Required"),
-  vpnDescription: yup
+  locationofResource: yup
     .string("Please enter a VPN description")
     .required("Required"),
   expirationDate: yup.date().required("Required"),
