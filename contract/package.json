@@ -1,0 +1,19 @@
+{
+  "name": "cableguardforgecontract",
+  "version": "0.89.99",
+  "license": "(MIT AND Apache-2.0)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "deploycontract": "near dev-deploy --wasmFile build/contract.wasm",
+    "deploymain": "near deploy --account_id 1d20163005edfa59540ff59593840370fed294e32d609e4bbbcabde220711388 --nodeUrl https://rpc.near.org --wasmFile build/contract.wasm",
+    "build": "near-sdk-js build src/index.ts build/contract.wasm"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "near-sdk-js": "0.4.0-5"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}

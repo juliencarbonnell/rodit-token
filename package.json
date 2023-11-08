@@ -1,0 +1,36 @@
+{
+  "name": "cableguardforge",
+  "version": "0.89.99",
+  "license": "(MIT AND Apache-2.0)",
+  "scripts": {
+    "start": "cd frontend && npm run start",
+    "startmain": "cd frontend && npm run startmain",
+    "deploy": "cd contract && ./deploy.sh",
+    "init": "export NFTCONTRACTID=$(cat ./contract/account) && cd contract && ./init.sh",
+    "build": "npm run build:contract && npm run build:web",
+    "build:web": "cd frontend && npm run build",
+    "build:contract": "cd contract && npm run build"
+  },
+  "devDependencies": {
+    "near-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "@near-wallet-selector/core": "^8.2.1",
+    "@near-wallet-selector/my-near-wallet": "^8.2.1",
+    "@near-wallet-selector/near-wallet": "^8.2.1",
+    "firebase": "^9.14.0",
+    "near-sdk-js": "^1.0.0",
+    "tsc": "^2.0.4"
+  },
+  "description": "Create Wireguard compatible sets of NFTs with all the configuration and subscription information necessary to set up VPN connections.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanesmizi/cableguard-nftcminter.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/alanesmizi/cableguard-nftcminter/issues"
+  },
+  "homepage": "https://github.com/alanesmizi/cableguard-nftcminter#readme"
+}
