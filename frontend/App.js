@@ -61,8 +61,8 @@ const App = ({ isSignedIn, cableguardForge, wallet }) => {
     if (text.includes("transaction")) {
       const url = text.split("=");
       const txUrl = url[1];
-      setTx(`https://nearblocks.io/txns/${txUrl}`);
-      // setTx(`https://explorer.testnet.near.org/transactions/${txUrl}`);
+      // setTx(`https://nearblocks.io/txns/${txUrl}`);
+      setTx(`https://explorer.testnet.near.org/transactions/${txUrl}`);
     }
   }, []);
 
