@@ -48,6 +48,7 @@
     "react-router-dom": "^6.4.3",
     "regenerator-runtime": "^0.13.9",
     "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
     "ulid": "2.3.0",
     "yup": "^0.32.11"
   },

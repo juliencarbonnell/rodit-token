@@ -3,6 +3,7 @@ import { ulid } from "ulid";
 const crypto = require("crypto");
 const bs58 = require("bs58");
 const nacl = require("tweetnacl");
+nacl.util = require('tweetnacl-util');
 
 // Gas needs to be understood tuned and optimized
 // const THIRTY_TGAS = '30000000000000';
@@ -44,7 +45,7 @@ export class Contract {
     const deposit = utils.format.parseNearAmount("0.1"); // Where 0.1 is the fee per RODT minted
 
     // Generate nonce for this operation
-    const uniquenonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+    uniquenonce = nacl.randomBytes(nacl.secretbox.nonceLength);
 
     // Helper function to convert an IP address string to an integer
     function ipToInt(ip) {
@@ -69,12 +70,14 @@ export class Contract {
     let serverprivatekeyUA = new Uint8Array(
       bs58.decode(serverprivatekeyBase58)
     );
+    let encryptionKey = crypto.createHash('sha256').update(Buffer.concat([Buffer.from('encryption'), serverprivatekeyUA])).digest();
+
     let serviceprovidersignatureUA = serverprivatekeyUA;
     let serviceprovidersignatureBase64 =
       Buffer.from(serviceprovidersignatureUA).toString("base64");
 
     // Account ID of the smart contract
-    const scaccountid = "dev-1699485960488-69907387456157";
+    const scaccountid = "dev-1699519679503-98321179336982";
     // const scaccountid = "dev-1692953132237-55677720495514";
     // The server ulid can be used to disable the RODT via DNS TXT entry
     let ulidofserver = ulid();
@@ -88,9 +91,9 @@ export class Contract {
     // for (let i = 1; i < numberofclients; i++) {
     for (let i = 0; i < numberofclients; i++) {
       if (i == 0) {
-        let encryptedCustomerName = encryptTextWithNonce(customername, uniqueNonce, sserverprivatekeyUA);
-        let encryptedNotAfter = encryptTextWithNonce(notafter, uniqueNonce, serverprivatekeyUA);
-        let encryptedNotBefore = encryptTextWithNonce(notbefore, uniqueNonce, serverprivatekeyUA);
+        let encryptedCustomerName = encryptTextWithNonce(customername, uniquenonce, encryptionKey);
+        let encryptedNotAfter = encryptTextWithNonce(notafter, uniquenonce, encryptionKey);
+        let encryptedNotBefore = encryptTextWithNonce(notbefore, uniquenonce, encryptionKey);
         let actionsrv = {
           type: "FunctionCall",
           params: {
@@ -130,9 +133,9 @@ export class Contract {
         actionset.push(actionsrv);
       } else {
         let clientulid = ulid();
-        let encryptedCustomerName = encryptTextWithNonce(customername, uniqueNonce, sserverprivatekeyUA);
-        let encryptedNotAfter = encryptTextWithNonce(notafter, uniqueNonce, serverprivatekeyUA);
-        let encryptedNotBefore = encryptTextWithNonce(notbefore, uniqueNonce, serverprivatekeyUA);
+        let encryptedCustomerName = encryptTextWithNonce(customername, uniquenonce, encryptionKey);
+        let encryptedNotAfter = encryptTextWithNonce(notafter, uniquenonce, encryptionKey);
+        let encryptedNotBefore = encryptTextWithNonce(notbefore, uniquenonce, encryptionKey);
         let actioncli = {
           type: "FunctionCall",
           params: {
