@@ -33,14 +33,14 @@ export const StepThree = (props) => {
               placeholder="0.0.0.0/0"
             />
             <Input
-              label="Server Endpoint Default URL"
+              label="Controlling Endpoint Default URL"
               name="initialendpoint_url"
               type="text"
               placeholder=""
             />
           </div>
           <Input
-            label="Wifi Password"
+            label="Notes"
             name="maximumKb"
             type="text"
             placeholder="100000 "

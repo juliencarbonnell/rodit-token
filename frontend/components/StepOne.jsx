@@ -52,13 +52,13 @@ export const StepOne = (props) => {
         <Form>
           <div className="grid my-2 md:grid-cols-2 md:gap-6">
             <Input
-              label="Number of VPN Clients"
+              label="Booking Fee"
               name="booking_fee"
               type="text"
               placeholder=""
             />
             <Input
-              label="Your VPN Provider Name"
+              label="Partage BnB Provider Name"
               name="nameofCustomer"
               type="text"
               placeholder=""
@@ -66,7 +66,7 @@ export const StepOne = (props) => {
           </div>
           <div className="my-2">
             <Input
-              label="Description of your VPN Service"
+              label="Room"
               name="locationofResource"
               type="text"
               placeholder=""
@@ -74,7 +74,7 @@ export const StepOne = (props) => {
           </div>
           <div className="grid my-2 md:grid-cols-2 md:gap-6">
             <Input
-              label="Expiration Date"
+              label="Exit Date"
               name="expirationDate"
               type="date"
               placeholder=""

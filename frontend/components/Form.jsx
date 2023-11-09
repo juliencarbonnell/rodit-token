@@ -14,7 +14,7 @@ export default function RODTForm({ data, step, prev, next }) {
     <div className="flex mt-12 lg:mt-2 flex-col w-fit px-6 pt-2 pb-8 items-center justify-center rounded-xl border bg-slate-100 border-gray-100 shadow-xl">
       <div>
         <h1 className="text-2xl tracking-wide font-semibold py-3">
-          Cableguard FORGE
+          Partage BnB
         </h1>
       </div>
       <div className="flex flex-col items-center  justify-center">

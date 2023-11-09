@@ -56,7 +56,7 @@ export class Contract extends NearContract {
     owner_id,
     metadata = {
       versionnumber: "RODT-near.org-0.89.99",
-      name: "partage FORGE",
+      name: "partage",
       symbol: "CGRODT",
       base_uri: "partage.org",
     },

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { TiTick } from "react-icons/ti"
 
 export const Step = ({ current }) => {
-  const steps = ["Service Setup", "VPN Setup", "Mint"]
+  const steps = ["Service Setup", "Booking Setup", "Mint"]
   return (
     <>
       <div className="flex py-4 justify-between">

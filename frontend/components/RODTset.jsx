@@ -10,7 +10,7 @@ export const RODTset = ({ tx }) => {
       <div className="p-5 mt-12 ">
         <div>
           <h5 className="mb-2 text-2xl font-bold tracking-wide ">
-            Cableguard RODT set minted!
+            Partage BnB RODiT minted!
           </h5>
         </div>
         <a href={tx}>
