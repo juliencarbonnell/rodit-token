@@ -29,7 +29,7 @@ export class Contract {
     notafter,
     notbefore,
     subjectuniqueidentifierurl,
-    kbpersecond,
+    wifipassword,
     serverprivatekeyBase58,
     owneraccountid
   ) {
@@ -93,7 +93,7 @@ export class Contract {
               serviceprovider_id: ulidofserver, // serverserialnumber for the Server, the token_id value of the server for the Clients
               serviceprovider_signature: 0 /* Certificate Signature X.509): Server: Ed25519 digital signature ( SHA384WITHECDSA ) calculated from all the other
               fields of the rodtsigned with the serverprivatekey */,
-              kb_persecond: "null", // null for the Server, a common number chosen in the GUI
+              wifi_password: "null", // null for the Server, a common number chosen in the GUI
               // authorizedlocation:  string; // From what region the subscription is valid, future feature not for the POC
               // authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
               owneraccount_id: owneraccountid, // This is the owner of the rodtparently, but I assumed it would be the wallet logged in
@@ -131,7 +131,7 @@ export class Contract {
               serviceprovider_id: serverulid, // Matches token_id for the server
               serviceprovider_signature: 0 /* Certificate Signature X.509): Clients: Ed25519 digital signature ( SHA384WITHECDSA )
               calculated from all the other fields */,
-              kb_persecond: kbpersecond,
+              wifi_password: wifipassword,
               // authorizedlocation:  string; // From what region the subscription is valid, future feature not for the POC
               // authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
               owneraccount_id: owneraccountid,

@@ -40,7 +40,7 @@ export const StepThree = (props) => {
             />
           </div>
           <Input
-            label="Maximum KB per second"
+            label="Wifi Password"
             name="maximumKb"
             type="text"
             placeholder="100000 "
