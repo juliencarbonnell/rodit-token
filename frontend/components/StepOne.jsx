@@ -35,7 +35,7 @@ export const StepOne = (props) => {
   }
 
   const initialValues = {
-    clientNumber: "",
+    booking_fee: "",
     nameofCustomer: "",
     locationofResource: "",
     expirationDate: nextYearDate(),
@@ -53,7 +53,7 @@ export const StepOne = (props) => {
           <div className="grid my-2 md:grid-cols-2 md:gap-6">
             <Input
               label="Number of VPN Clients"
-              name="clientNumber"
+              name="booking_fee"
               type="text"
               placeholder=""
             />

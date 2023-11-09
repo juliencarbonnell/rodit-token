@@ -1,7 +1,7 @@
 import * as yup from "yup"
 
 export const formSchema = yup.object().shape({
-  clientNumber: yup
+  booking_fee: yup
     .number("Please enter a number")
     .typeError("Please enter a number")
     .positive()

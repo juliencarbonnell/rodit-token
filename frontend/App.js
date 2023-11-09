@@ -11,7 +11,7 @@ const App = ({ isSignedIn, cableguardForge, wallet }) => {
   const [tx, setTx] = useState("");
 
   const [data, setData] = useState({
-    clientNumber: "",
+    booking_fee: "",
     nameofCustomer: "",
     locationofResource: "",
     expirationDate: "",
@@ -61,8 +61,8 @@ const App = ({ isSignedIn, cableguardForge, wallet }) => {
   }, []);
 
   const handleMint = async (formData) => {
-    const mint = await cableguardForge.addRODTset(
-      data.clientNumber,
+    const mint = await cableguardForge.addRODiT(
+      data.booking_fee,
       data.nameofCustomer,
       data.locationofResource,
       data.expirationDate,
