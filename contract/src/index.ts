@@ -87,7 +87,7 @@ export class Contract extends NearContract {
     subjectuniqueidentifier_url, // (Subject Unique Identifier X.509): A single IPv4 address for the server chosen in the GUI
     serviceprovider_id, // serverserialnumber for the Server, the token_id value of the server for the Clients
     serviceprovider_signature,
-    wifi_password, // null for the Server, a common number chosen in the GUI
+    unique_nonce, // null for the Server, a common number chosen in the GUI
     // authorizedlocation:  string; // From what region the subscription is valid, future feature not for the POC
     // authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
     owneraccount_id, // This is the owner of the rodtparently, but I assumed it would be the wallet logged in
@@ -100,7 +100,7 @@ export class Contract extends NearContract {
       subjectuniqueidentifier_url, // (Subject Unique Identifier X.509): A single IPv4 address for the server chosen in the GUI
       serviceprovider_id, // serverserialnumber for the Server, the token_id value of the server for the Clients
       serviceprovider_signature,
-      wifi_password // null for the Server, a common number chosen in the GUI
+      unique_nonce // null for the Server, a common number chosen in the GUI
       // authorizedlocation:  string; // From what region the subscription is valid, future feature not for the POC
       // authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
     );

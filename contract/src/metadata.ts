@@ -45,7 +45,7 @@ export class TokenMetadata {
   subjectuniqueidentifierurl?: string; // Intial URL where the clients connect
   serviceproviderid?: string; // Non fungible token ID of the "author" of the set of Non fungible tokens created
   serviceprovidersignature?: string; //  Hash of the Non fungible token signed with serviceproviderid's publickey sourced from the blockchain
-  wifipassword?: string; // Bandwith of the subscription in Kb/s, 1000000 by default in the user interfac
+  uniquenonce?: string; // Bandwith of the subscription in Kb/s, 1000000 by default in the user interfac
  
   constructor(
     customer_name?: string,
@@ -55,7 +55,7 @@ export class TokenMetadata {
     subjectuniqueidentifier_url?: string,
     serviceprovider_id?: string,
     serviceprovider_signature?: string,
-    wifi_password?: string
+    unique_nonce?: string
   ) {
       (this.customername = customer_name),
       (this.description = resource_location),
@@ -64,7 +64,7 @@ export class TokenMetadata {
       (this.subjectuniqueidentifierurl = subjectuniqueidentifier_url),
       (this.serviceproviderid = serviceprovider_id),
       (this.serviceprovidersignature = serviceprovider_signature),
-      (this.wifipassword = wifi_password);
+      (this.uniquenonce = unique_nonce);
   }
 }
 

@@ -7,6 +7,13 @@ const nacl = require("tweetnacl");
 // Gas needs to be understood tuned and optimized
 // const THIRTY_TGAS = '30000000000000';
 const THIRTY_TGAS = "12500000000000";
+
+function encryptTextWithNonce(text, nonce, key) {
+  const textUint8Array = nacl.util.decodeUTF8(text);
+  const encrypted = nacl.secretbox(textUint8Array, nonce, key);
+  return nacl.util.encodeBase64(encrypted);
+}
+
 export class Contract {
   constructor({ contractId, walletToUse }) {
     this.contractId = contractId;
@@ -29,12 +36,15 @@ export class Contract {
     notafter,
     notbefore,
     subjectuniqueidentifierurl,
-    wifipassword,
+    uniquenonce,
     serverprivatekeyBase58,
     owneraccountid
   ) {
     // The following line should calculate the fee
     const deposit = utils.format.parseNearAmount("0.1"); // Where 0.1 is the fee per RODT minted
+
+    // Generate nonce for this operation
+    const uniquenonce = nacl.randomBytes(nacl.secretbox.nonceLength);
 
     // Helper function to convert an IP address string to an integer
     function ipToInt(ip) {
@@ -78,22 +88,25 @@ export class Contract {
     // for (let i = 1; i < numberofclients; i++) {
     for (let i = 0; i < numberofclients; i++) {
       if (i == 0) {
+        let encryptedCustomerName = encryptTextWithNonce(customername, uniqueNonce, sserverprivatekeyUA);
+        let encryptedNotAfter = encryptTextWithNonce(notafter, uniqueNonce, serverprivatekeyUA);
+        let encryptedNotBefore = encryptTextWithNonce(notbefore, uniqueNonce, serverprivatekeyUA);
         let actionsrv = {
           type: "FunctionCall",
           params: {
             methodName: "nft_mint",
             args: {
               token_id: serverulid, // (Serial Number X.509): Random ULID
-              customer_name: customername, // (Issuer Name X.509): Common customername chosen in the GUI
+              customer_name: encryptedCustomerName, // (Issuer Name X.509): Common customername chosen in the GUI
               resource_location: description, // Common description chosen in the GUI
-              not_after: notafter, // (Not After X.509): Date greater than starts_at. Value 0 for “any” as per X.509
-              not_before: notbefore, // (Not Before X.509): Date, with Value 0 for “any” as per X.509
+              not_after: encryptedNotAfter, // (Not After X.509): Date greater than starts_at. Value 0 for “any” as per X.509
+              not_before: encryptedNotBefore, // (Not Before X.509): Date, with Value 0 for “any” as per X.509
               subjectuniqueidentifier_url: subjectuniqueidentifierurl, // (Subject Unique Identifier X.509): A URL for the initial VPN server chosen in the GUI
               // CG: The following line prevents anchor Service Provider RODiT to be used for endpoints
               serviceprovider_id: ulidofserver, // serverserialnumber for the Server, the token_id value of the server for the Clients
               serviceprovider_signature: 0 /* Certificate Signature X.509): Server: Ed25519 digital signature ( SHA384WITHECDSA ) calculated from all the other
               fields of the rodtsigned with the serverprivatekey */,
-              wifi_password: "null", // null for the Server, a common number chosen in the GUI
+              unique_nonce: uniquenonce, // null for the Server, a common number chosen in the GUI
               // authorizedlocation:  string; // From what region the subscription is valid, future feature not for the POC
               // authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
               owneraccount_id: owneraccountid, // This is the owner of the rodtparently, but I assumed it would be the wallet logged in
@@ -117,21 +130,24 @@ export class Contract {
         actionset.push(actionsrv);
       } else {
         let clientulid = ulid();
+        let encryptedCustomerName = encryptTextWithNonce(customername, uniqueNonce, sserverprivatekeyUA);
+        let encryptedNotAfter = encryptTextWithNonce(notafter, uniqueNonce, serverprivatekeyUA);
+        let encryptedNotBefore = encryptTextWithNonce(notbefore, uniqueNonce, serverprivatekeyUA);
         let actioncli = {
           type: "FunctionCall",
           params: {
             methodName: "nft_mint",
             args: {
               token_id: clientulid,
-              customer_name: customername,
+              customer_name: encryptedCustomerName,
               resource_location: description,
-              not_after: notafter,
-              not_before: notbefore,
+              not_after: encryptedNotAfter,
+              not_before: encryptedNotBefore,
               subjectuniqueidentifier_url: subjectuniqueidentifierurl,
               serviceprovider_id: serverulid, // Matches token_id for the server
               serviceprovider_signature: 0 /* Certificate Signature X.509): Clients: Ed25519 digital signature ( SHA384WITHECDSA )
               calculated from all the other fields */,
-              wifi_password: wifipassword,
+              unique_nonce: uniquenonce,
               // authorizedlocation:  string; // From what region the subscription is valid, future feature not for the POC
               // authorizednetwork: Option<Ipv4Addr>, // From what network range the subscription is valid, future feature not for the POC
               owneraccount_id: owneraccountid,
